@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="example-container">
+        <audio id="audio" preload="auto" loop crossorigin="anonymous">
+            <source
+                src="https://cdn.glitch.me/22ba63e7-e81d-44e0-b090-9a97755b83a5/%E8%87%AA%E7%94%B1%E3%81%AE%E5%88%91.wav?v=1738396373397"
+                type="audio/mpeg" />
+        </audio>
+
+        <a-scene
+            mindar-image="imageTargetSrc: https://cdn.glitch.global/22ba63e7-e81d-44e0-b090-9a97755b83a5/targets.mind?v=1738543152185"
+            embedded color-space="sRGB" renderer="colorManagement: true; physicallyCorrectLights: true;"
+            vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+            <a-assets>
+                <a-asset-item id="base-model"
+                    src="https://cdn.glitch.global/6a533e4a-d788-4e48-a743-a835da332055/base_basic_pbr.glb?v=1737412497932">
+                </a-asset-item>
+            </a-assets>
+
+            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+            <a-entity mindar-image-target="targetIndex: 0">
+                <a-sphere id="visualSphere" position="0 0 0" radius="0.55" color="blue" opacity="0.3"
+                    material="metalness: 0.8; roughness: 0.2; transparent: true;">
+                    <a-entity id="base-entity" position="0 -0.4 0" scale="0.4 0.4 0.4" rotation="0 0 0"
+                        gltf-model="#base-model"
+                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
+                    </a-entity>
+                    <a-entity id="equalizer-container"></a-entity>
+                </a-sphere>
+            </a-entity>
+        </a-scene>
+    </div>
+
+    <div id="scanning-overlay">CDのジャケットをスキャンしてください</div>
+  
+  <div id="button-container">
+        <button class="social-links" id="website-button">
+            <i class="fas fa-globe"></i>
+        </button>
+        <button id="audio-control">
+            <i class="fas fa-play"></i>
+        </button>
+        <button id="toggle-lyrics">
+            <i class="fas fa-align-justify"></i>
+        </button>
+    </div>
+
+     <div class="time-container">
+        <span id="current-time">0:00</span>
+        <input type="range" id="seek-bar" value="0" min="0" max="100" step="0.01">
+         <span id="duration">0:00</span>
+      </div>
+
+    <div id="lyrics-overlay">
+        <div id="lyrics-content">
+            <span style="font-size: 1.5em">自由の刑</span>
+            <p>
+                デジタルな夜の中<br />
+                無機質な迷路を彷徨う<br />
+                「なぜ生きる？」<br />
+                微かな声を頼りに<br />
+                未来を探す
+            </p>
+
+            <p>
+                地図も持たずに出た旅は<br />
+                ときに孤独が襲うけど<br />
+                選べることの重みだけが<br />
+                確かな今を照らしてくれる
+            </p>
+
+            <p>
+                神のいない世界が<br />
+                自由の刑というのなら<br />
+                喜んで受けよう<br />
+                理屈じゃない この鼓動が<br />
+                確かな答えを告げてる
+            </p>
+
+            <p>
+                光と影の狭間で<br />
+                歩む足跡は消えゆく<br />
+                「何を信じる？」<br />
+                その問いの答えを<br />
+                風に乗せて探す
+            </p>
+
+            <p>
+                道なき道を進む旅<br />
+                希望と不安が交錯する<br />
+                けれどこの心の声だけが<br />
+                明日への道を示してくれる
+            </p>
+
+            <p>
+                神のいない世界が<br />
+                自由の刑というのなら<br />
+                喜んで受けよう<br />
+                美しい混沌の中で<br />
+                踊るように明日を描こう
+            </p>
+            <p>
+                自分だけが持つ光 解き放て<br />
+                意味のない世界 だからこそ<br />
+                その光で 暗闇を照らせ
+            </p>
+
+            <p>
+                神のいない世界が<br />
+                自由の刑というのなら<br />
+                喜んで受けよう<br />
+                理屈じゃない この鼓動が<br />
+                確かな答えを告げてる
+            </p>
+            <p>
+                <br />
+                <br />
+                <br />
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
