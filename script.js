@@ -186,18 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     scene.addEventListener('targetFound', () => {
         isTargetFound = true;
-        if (isLyricsVisible) {
-            lyricsOverlay.style.display = 'none'; // マーカー認識時、歌詞を隠す
-        }
         scanningOverlay.classList.add('fade-out');
+        // 歌詞表示は手動制御のまま維持
     });
 
     scene.addEventListener('targetLost', () => {
         isTargetFound = false;
-        if (isLyricsVisible) {
-            lyricsOverlay.style.display = 'flex'; // マーカー認識消失時、歌詞を復元
-        }
         scanningOverlay.classList.remove('fade-out');
+        // 歌詞表示は手動制御のまま維持
     });
 
     scene.addEventListener('error', (e) => {
@@ -217,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
         isLyricsVisible = !isLyricsVisible;
         
         if (isLyricsVisible) {
-            // 歌詞表示ON: マーカー認識中でなければ表示
-            lyricsOverlay.style.display = isTargetFound ? 'none' : 'flex';
+            // 歌詞表示ON: 常に表示（マーカー認識状態に関係なく）
+            lyricsOverlay.style.display = 'flex';
         } else {
             // 歌詞表示OFF: 必ず非表示
             lyricsOverlay.style.display = 'none';
