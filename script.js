@@ -210,16 +210,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     toggleLyricsButton.addEventListener('click', () => {
+        console.log('歌詞ボタンがクリックされました');
+        console.log('現在のisLyricsVisible:', isLyricsVisible);
+        console.log('現在のlyricsOverlay.style.display:', lyricsOverlay.style.display);
+        
         isLyricsVisible = !isLyricsVisible;
         
         if (isLyricsVisible) {
-            // 歌詞表示ON: 常に表示（マーカー認識状態に関係なく）
+            // 歌詞表示ON: 常に表示
             lyricsOverlay.style.display = 'flex';
+            console.log('歌詞を表示しました');
         } else {
             // 歌詞表示OFF: 必ず非表示
             lyricsOverlay.style.display = 'none';
+            console.log('歌詞を非表示にしました');
         }
         
+        console.log('変更後のlyricsOverlay.style.display:', lyricsOverlay.style.display);
         updateLyricsButton();
     });
 
