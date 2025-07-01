@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let bars = [];
     let isLyricsVisible = false;
 
-    // ページの読み込み時に歌詞を非表示にする
+    // 歌詞の初期状態設定
+    isLyricsVisible = false;
     lyricsOverlay.style.display = 'none';
 
     // リンクボタンのイベントリスナー
@@ -209,24 +210,29 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open('https://www.instagram.com/techconnect.em/', '_blank');
     });
 
-    toggleLyricsButton.addEventListener('click', () => {
+    toggleLyricsButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        
         console.log('歌詞ボタンがクリックされました');
         console.log('現在のisLyricsVisible:', isLyricsVisible);
-        console.log('現在のlyricsOverlay.style.display:', lyricsOverlay.style.display);
         
         isLyricsVisible = !isLyricsVisible;
         
+        // 強制的にスタイルを設定
         if (isLyricsVisible) {
-            // 歌詞表示ON: 常に表示
-            lyricsOverlay.style.display = 'flex';
-            console.log('歌詞を表示しました');
+            lyricsOverlay.style.setProperty('display', 'flex', 'important');
+            console.log('歌詞を表示に設定');
         } else {
-            // 歌詞表示OFF: 必ず非表示
-            lyricsOverlay.style.display = 'none';
-            console.log('歌詞を非表示にしました');
+            lyricsOverlay.style.setProperty('display', 'none', 'important');
+            console.log('歌詞を非表示に設定');
         }
         
-        console.log('変更後のlyricsOverlay.style.display:', lyricsOverlay.style.display);
+        // 確認のため最終状態をログ出力
+        setTimeout(() => {
+            console.log('最終的なdisplayプロパティ:', getComputedStyle(lyricsOverlay).display);
+        }, 100);
+        
         updateLyricsButton();
     });
 
